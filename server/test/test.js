@@ -75,8 +75,10 @@ describe('api middleware', () => {
         return new Promise((resolve, reject) => {
           console.log(pressure.date);
           const requestMock = {
+            headers: {
+              Authorization: `Bearer ${config.token}`
+            },
             body: {
-              token: token,
               systolic: pressure.systolic,
               diastolic: pressure.diastolic,
               date: pressure.date
@@ -90,7 +92,7 @@ describe('api middleware', () => {
             }
           };
           api.submitPressure(requestMock, responseMock);
-        }); 
+        });
       };
       submitPromiseFunctions.push(submitPressurePromise);
     });

@@ -6,7 +6,7 @@ const AUTH0_DOMAIN = config.AUTH0_DOMAIN;
 
 // NOTE: for demo purposes only: there are better ways to do this
 const getToken = function getToken(request) {
-  const header = request.headers.authorization;
+  const header = request.headers["Authorization"];
   if (header && header.startsWith("Bearer ")) {
     return header.substring(7)
   }
