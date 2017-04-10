@@ -105,8 +105,8 @@ describe('api middleware', () => {
   }).timeout(0);
   it('should retrieve pressures', done => {
     const requestMock = {
-      query: {
-        token: token,
+      headers: {
+        Authorization: `Bearer ${config.token}`
       }
     };
     const responseMock = {
