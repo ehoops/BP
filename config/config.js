@@ -1,6 +1,6 @@
 module.exports = {
-  AUTH0_DOMAIN: "xyz.auth0.com",
-  AUTH0_CLIENT_ID: "",
-  AUTH0_SECRET: "",
-  token: "extract a token for a logged in user"
+  AUTH0_DOMAIN: "ehoops.auth0.com",
+  AUTH0_CLIENT_ID: "ytG4VWMp0T1cfQsddWr3WhqHdJq2eBtO",
+  AUTH0_SECRET: "3TjyA2TivOeWJcVX3JfgL_2FQCxvAloc-7OYZGjv4A71ieL7xVk_VYZVmPz2lOrr",
+  token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImVlaG9vcHMrYnAxQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJpc3MiOiJodHRwczovL2Vob29wcy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NTkwMDIwODNkZGI2YTQwZjI3NGI1OTQyIiwiYXVkIjoieXRHNFZXTXAwVDFjZlFzZGRXcjNXaHFIZEpxMmVCdE8iLCJleHAiOjE0OTM1MzUyMjcsImlhdCI6MTQ5MzQ5OTIyN30.kWW9pEm6fm1E7ZKPyCp7AoTnZf57EMwEhrp9JRIATf0"
 };

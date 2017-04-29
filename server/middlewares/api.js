@@ -6,7 +6,7 @@ const AUTH0_DOMAIN = config.AUTH0_DOMAIN;
 
 // NOTE: for demo purposes only: there are better ways to do this
 const getToken = function getToken(request) {
-  // console.log(request);
+  //console.log(request);
   let headers = request.headers || {}
   const header = headers.Authorization || headers.authorization;
   if (header && header.startsWith("Bearer ")) {
@@ -44,8 +44,10 @@ const getUsername = function getUsername(token) {
 
 module.exports = {
   submitPressure(request, response) {
+    console.log('request made');
     const token = getToken(request)
     const body = request.body;
+    console.log(request);
     const diastolic = body.diastolic;
     const systolic = body.systolic;
     const date = body.date ? body.date : Date.now();

@@ -28,6 +28,7 @@ const getPressures = function createUser(username) {
 const addPressure = function addPressure(username, pressure) {
   return getUser(username)
   .then(user => {
+    console.log('addPressure called');
     const date = pressure.date;
     const systolic = pressure.systolic;
     const diastolic = pressure.diastolic;

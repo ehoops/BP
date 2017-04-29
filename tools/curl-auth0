@@ -22,8 +22,8 @@
 CURL_VERBOSE=-s
 # CURL_VERBOSE=-vvv
 
-AUTH0_DOMAIN=<get from Auth0>.auth0.com
-AUTH0_CLIENTID=<get from Auth0>
+AUTH0_DOMAIN=ehoops.auth0.com
+AUTH0_CLIENTID=ytG4VWMp0T1cfQsddWr3WhqHdJq2eBtO
 AUTH0_USERNAME=$1
 AUTH0_PASSWORD=$2
 
@@ -34,9 +34,9 @@ shift
 shift
 CURL_ARGS=$*
 
-#echo $AUTH0_USERNAME
-#echo $AUTH0_PASSWORD
-#echo $CURL_ARGS
+echo $AUTH0_USERNAME
+echo $AUTH0_PASSWORD
+echo $CURL_ARGS
 
 RO_URL=https://${AUTH0_DOMAIN}/oauth/ro
 RO_PAYLOAD="{

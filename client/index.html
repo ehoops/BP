@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BP tracker</title>
+  <script
+    src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+  <script src="./moment.js"></script>
+</head>
+<body>
+  <div>Record Today's Blood Pressure</div>
+  <form class="addPressureForm">
+    <input type="text" name="systolic" id="newSystolic">
+    /
+    <input type="text" name="diastolic" id="newDiastolic">
+    <br>
+    <button type="button" class="submitPressure">Submit</button>
+  </form>
+  <div>
+    <canvas id="canvas" height="400px" width="300px"></canvas>
+  </div>
+  <script src="./index.js"></script>
+</body>
+</html>
