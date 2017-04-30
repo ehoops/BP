@@ -1,7 +1,7 @@
 const AUTH0_DOMAIN = "ehoops.auth0.com";
 const AUTH0_CLIENT_ID = "ytG4VWMp0T1cfQsddWr3WhqHdJq2eBtO";
 const AUTH0_SECRET = "3TjyA2TivOeWJcVX3JfgL_2FQCxvAloc-7OYZGjv4A71ieL7xVk_VYZVmPz2lOrr";
-const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImVlaG9vcHMrYnAxQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJpc3MiOiJodHRwczovL2Vob29wcy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NTkwMDIwODNkZGI2YTQwZjI3NGI1OTQyIiwiYXVkIjoieXRHNFZXTXAwVDFjZlFzZGRXcjNXaHFIZEpxMmVCdE8iLCJleHAiOjE0OTM1MzUyMjcsImlhdCI6MTQ5MzQ5OTIyN30.kWW9pEm6fm1E7ZKPyCp7AoTnZf57EMwEhrp9JRIATf0";
+const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImVlaG9vcHMrYnAxQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJpc3MiOiJodHRwczovL2Vob29wcy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NTkwMDIwODNkZGI2YTQwZjI3NGI1OTQyIiwiYXVkIjoieXRHNFZXTXAwVDFjZlFzZGRXcjNXaHFIZEpxMmVCdE8iLCJleHAiOjE0OTM2MDI4ODUsImlhdCI6MTQ5MzU2Njg4NX0.iNn1fwtJppbQ8O2Xrr7GmGG95i5C9i5tGled7hsVcTE";
 
 
 function chartBPs(data) {
@@ -43,20 +43,20 @@ function createChart(systolic, diastolic, dates) {
   context.fillStyle = "#9E9E9D";
   context.font = "16 pt Arial"
 
-  yScale = (canvas.height - columnSize - margin) / (Val_max - Val_min);
-  xScale = (canvas.width - rowSize) / sections;
+  let yScale = (canvas.height - columnSize - margin) / (Val_max - Val_min);
+  let xScale = (canvas.width - rowSize) / sections;
 
   context.strokeStyle="#D9D8D7"; // color of grid lines
   context.beginPath();
     // print Parameters on X axis, and grid lines on the graph
-  for (i=1;i<=sections;i++) {
-    var x = i * xScale;
+  for (let i=1;i<=sections;i++) {
+    let x = i * xScale;
     context.fillText(xAxis[i], x, canvas.height);
   }
     // print row header and draw horizontal grid lines
-  var count =  0;
-  for (scale=Val_max;scale>=Val_min;scale = scale - stepSize) {
-    var y = columnSize + (yScale * count * stepSize);
+  let count =  0;
+  for (let scale=Val_max;scale>=Val_min;scale = scale - stepSize) {
+    let y = columnSize + (yScale * count * stepSize);
     context.fillText(scale, canvas.width - 2 * margin, y + margin);
     context.setLineDash([3, 3]); // Dashes are 3px, spaces are 3px
     context.moveTo(rowSize,y)
@@ -70,17 +70,17 @@ function createChart(systolic, diastolic, dates) {
 
     // Color of each dataplot items
   context.strokeStyle="#552DB9";
-  plotData(systolic, context, sections);
+  plotData(systolic, context, xScale, sections);
   context.strokeStyle="#777FAF";
-  plotData(diastolic, context, sections);
+  plotData(diastolic, context, xScale, sections);
 
 }
 
-function plotData(dataSet, context, sections) {
+function plotData(dataSet, context, xScale, sections) {
   context.setLineDash([]);
 	context.beginPath();
 	context.moveTo(0, dataSet[0]);
-	for (i=1;i<sections;i++) {
+	for (let i=1;i<sections;i++) {
 		context.lineTo(i * xScale, dataSet[i]);
 	}
 	context.stroke();
