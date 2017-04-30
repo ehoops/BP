@@ -5,19 +5,18 @@ const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImVlaG9vcHMrYnAx
 
 
 function chartBPs(data) {
-
-
+  // Separate systolic and diastolic data
   let all_systolic = _.map(data, (entry) => {
       return entry.systolic;
   });
-
   let all_diastolic = _.map(data, (entry) => {
     return entry.diastolic;
   });
+
+  // Get dates and then get months
   let all_dates = _.map(data, (entry) => {
     return moment.unix(entry.date / 1000);
   });
-
   let all_months = _.map(all_dates, (date) =>{
     return date.get('month');
   });
@@ -28,6 +27,7 @@ function chartBPs(data) {
     return array[index - 1] === val;
   })
 
+  // Create chart and plot data
   createChart(all_systolic, all_diastolic, months);
 };
 
@@ -87,7 +87,7 @@ function createChart(systolic, diastolic, months) {
     ctx.fillText(monthLabels[months[i]], labelX, bottomY + 25);
   }
 
-  // X spacing = total X pixels (rightX - 0) over number of points
+  // X spacing for data = total X pixels (rightX - 0) over number of points
   const pxPerDataPointX = rightX / (systolic.length - 1);
   const pxPerUnitY      = (topMarginPx - bottomY) / (yMax - yMin);
 
@@ -97,6 +97,7 @@ function createChart(systolic, diastolic, months) {
 }
 
 function plotData(color, data, ctx, pxPerDataPointX, pxPerUnitY, bottomY, yMin) {
+  // Helper function for adding data to the canvas
   ctx.strokeStyle = color;
   for (let i = 0; i < data.length; i++) {
     const xStart = i * pxPerDataPointX;

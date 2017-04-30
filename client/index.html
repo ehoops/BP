@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>BP tracker</title>
+  <link rel="stylesheet" type="text/css" href="index.css">
   <script
     src="https://code.jquery.com/jquery-3.1.1.min.js"
     integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
@@ -11,16 +12,18 @@
   <script src="./moment.js"></script>
 </head>
 <body>
-  <div>Record Today's Blood Pressure</div>
-  <form class="addPressureForm">
-    <input type="text" name="systolic" id="newSystolic">
-    /
-    <input type="text" name="diastolic" id="newDiastolic">
-    <br>
+  <div class="container">
+    <div class="title">Record Today's Blood Pressure</div>
+    <form class="addPressureForm">
+      <input type="text" name="systolic" id="newSystolic" class="input">
+      /
+      <input type="text" name="diastolic" id="newDiastolic" class="input">
+      <br>
+    </form>
     <button type="button" class="submitPressure">Submit</button>
-  </form>
-  <div>
-    <canvas id="canvas" height="500px" width="350px" style="border:1px solid #000000;"></canvas>
+    <HR>
+    <h3 class="chartName">History</h3>
+    <canvas id="canvas" class="chart"></canvas>
   </div>
   <script src="./index.js"></script>
 </body>
