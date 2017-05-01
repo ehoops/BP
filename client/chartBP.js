@@ -33,8 +33,9 @@ function createChart(systolic, diastolic, months) {
   let canvas = document.getElementById('canvas');
   let ctx = canvas.getContext('2d');
 
-	canvas.width = window.innerWidth;
-	canvas.height = window.innerHeight;
+  let chartDiv = document.getElementById('chartDiv');
+	canvas.width = chartDiv.clientWidth;
+	canvas.height = chartDiv.clientHeight;
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   // Chart margins

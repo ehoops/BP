@@ -6,8 +6,9 @@ const cookies = require('./cookies');
 
 function onLoginClick() {
   // Add input fields for username and password
-  $('#header').append('<div id="username-password"></div>')
-  $('#username-password').append('Username: <input type="text" name="username" id="username"></input>');
+  $('#header').append('<div id="username-password" class="username-password"></div>')
+  $('#username-password').append(
+    'Username: <input type="text" name="username" id="username"></input>');
   $('#username-password').append('Password: <input type="text" name="password" id="password"></input>');
   // Change login button to submit button
   $('.login').text('Submit');
@@ -19,21 +20,18 @@ function onLoginSubmit() {
   // Get username and password values and use them to get an access token
   let username = $('#username').val();
   let password = $('#password').val();
-
   // Remove input fields and change button back to login
   $('#username-password').remove();
   $('.login').text('Login');
   $('.login').on('click', onLoginClick);
   $('.login').off('click', onLoginSubmit);
-
   // If there was input, get an id token
   if (username === '' | password === '') {return;}
   getAuth0Token(username, password);
-
 }
 
 function gotToken(data) {
-  cookies.setCookie('BP_id_token', data.id_token, 60);
+  cookies.setCookie('BP_id_token', data.id_token, 1);
   fetchAndDraw();
 }
 
@@ -56,9 +54,7 @@ function getAuth0Token(username, password) {
 
 function fetchAndDraw() {
   let token = cookies.getCookie('BP_id_token');
-  if (!token) {
-    return;
-  }
+  if (!token) {return;}
   $.ajax({
     type: 'GET',
     url: '/api/getPressures',
