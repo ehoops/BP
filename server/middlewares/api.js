@@ -35,6 +35,7 @@ const getUsername = function getUsername(token) {
     const body = response.body;
     if (body !== 'Unauthorized') {
       username = JSON.parse(body).email;
+      console.log('username: ' + username);
       return username;
     } else {
       throw Error('no user found with that token.');
