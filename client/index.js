@@ -1,8 +1,9 @@
-const AUTH0_DOMAIN = "ehoops.auth0.com";
-const AUTH0_CLIENT_ID = "ytG4VWMp0T1cfQsddWr3WhqHdJq2eBtO";
-const AUTH0_SECRET = "3TjyA2TivOeWJcVX3JfgL_2FQCxvAloc-7OYZGjv4A71ieL7xVk_VYZVmPz2lOrr";
-const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImVlaG9vcHMrYnAxQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJpc3MiOiJodHRwczovL2Vob29wcy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NTkwMDIwODNkZGI2YTQwZjI3NGI1OTQyIiwiYXVkIjoieXRHNFZXTXAwVDFjZlFzZGRXcjNXaHFIZEpxMmVCdE8iLCJleHAiOjE0OTM2MDI4ODUsImlhdCI6MTQ5MzU2Njg4NX0.iNn1fwtJppbQ8O2Xrr7GmGG95i5C9i5tGled7hsVcTE";
+'use strict'
 
+const config = require('../config/config.js');
+const $      = require('jQuery');
+const _      = require('underscore');
+const moment = require('moment');
 
 function chartBPs(data) {
   // Separate systolic and diastolic data
@@ -125,7 +126,7 @@ function onSubmitPressure() {
       diastolic: newDiastolic
     },
     beforeSend: function(xhr) {
-      xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+      xhr.setRequestHeader('Authorization', 'Bearer ' + config.token);
     },
     success: fetchAndDraw,
     error: console.log,
@@ -138,7 +139,7 @@ function fetchAndDraw() {
     type: 'GET',
     url: '/api/getPressures',
     beforeSend: function(xhr) {
-      xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+      xhr.setRequestHeader('Authorization', 'Bearer ' + config.token);
     },
     success: chartBPs,
     error: console.log,

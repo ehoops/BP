@@ -44,10 +44,8 @@ const getUsername = function getUsername(token) {
 
 module.exports = {
   submitPressure(request, response) {
-    console.log('request made');
     const token = getToken(request)
     const body = request.body;
-    console.log(request);
     const diastolic = body.diastolic;
     const systolic = body.systolic;
     const date = body.date ? body.date : Date.now();

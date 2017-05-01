@@ -1,3 +1,6 @@
+'use strict'
+
+const webpackConfig = require('../webpack.config.js');
 const express = require('express');
 const bodyParser = require('body-parser');
 const compression = require('compression');
@@ -9,6 +12,7 @@ const appDirectory = __dirname.slice(0, __dirname.length - folderNameLength - 1)
 
 app.use(compression());
 app.use(express.static(appDirectory + '/client'));
+app.use('/build', express.static(appDirectory + '/build'));
 app.use(bodyParser.json({type: 'application/json'}));
 app.use(bodyParser.urlencoded({type: 'application/x-www-form-urlencoded', extended: true}));
 
