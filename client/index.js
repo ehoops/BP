@@ -1,12 +1,10 @@
 'use strict'
-const config   = require('../config/config.js');
-const $        = require('jQuery');
+const config  = require('../config/config.js');
+const $       = require('jQuery');
 const chartBP = require('./chartBP');
-
-let token;
+const cookies = require('./cookies');
 
 function onLoginClick() {
-  console.log('login clicked');
   // Add input fields for username and password
   $('#header').append('<div id="username-password"></div>')
   $('#username-password').append('Username: <input type="text" name="username" id="username"></input>');
@@ -18,11 +16,9 @@ function onLoginClick() {
 }
 
 function onLoginSubmit() {
-  console.log('submit login clicked');
   // Get username and password values and use them to get an access token
   let username = $('#username').val();
   let password = $('#password').val();
-  getAuth0Token(username, password);
 
   // Remove input fields and change button back to login
   $('#username-password').remove();
@@ -30,10 +26,14 @@ function onLoginSubmit() {
   $('.login').on('click', onLoginClick);
   $('.login').off('click', onLoginSubmit);
 
+  // If there was input, get an id token
+  if (username === '' | password === '') {return;}
+  getAuth0Token(username, password);
+
 }
 
 function gotToken(data) {
-  token = data.id_token;
+  cookies.setCookie('BP_id_token', data.id_token, 60);
   fetchAndDraw();
 }
 
@@ -55,6 +55,10 @@ function getAuth0Token(username, password) {
 }
 
 function fetchAndDraw() {
+  let token = cookies.getCookie('BP_id_token');
+  if (!token) {
+    return;
+  }
   $.ajax({
     type: 'GET',
     url: '/api/getPressures',
@@ -67,6 +71,7 @@ function fetchAndDraw() {
 }
 
 function onSubmitPressure() {
+  let token = cookies.getCookie('BP_id_token');
   let newSystolic = parseInt($('#newSystolic').val());
   let newDiastolic = parseInt($('#newDiastolic').val());
   $('#newSystolic').val('');
@@ -90,6 +95,5 @@ function onSubmitPressure() {
 $(document).ready(function(){
   $('.submitPressure').on('click', onSubmitPressure);
   $('.login').on('click', onLoginClick);
-  token = getAuth0Token();
-
+  fetchAndDraw();
 });
