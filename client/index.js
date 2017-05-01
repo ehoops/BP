@@ -85,11 +85,17 @@ function onSubmitPressure() {
     success: fetchAndDraw,
     error: console.log,
   });
+}
 
+function onRangeClick() {
+  console.log('Range clicked');
+  let b = $('#rangeDropdown');
+  b.hasClass('show') ? b.removeClass('show') : b.addClass('show');
 }
 
 $(document).ready(function(){
   $('.submitPressure').on('click', onSubmitPressure);
   $('.login').on('click', onLoginClick);
+  $('#setRange').on('click', onRangeClick);
   fetchAndDraw();
 });
