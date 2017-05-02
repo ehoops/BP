@@ -9,7 +9,7 @@ function onLoginClick() {
   $('#header').append('<div id="username-password" class="username-password"></div>')
   $('#username-password').append(
     'Username: <input type="text" name="username" id="username"></input>');
-  $('#username-password').append('Password: <input type="text" name="password" id="password"></input>');
+  $('#username-password').append('Password: <input type="password" name="password" id="password"></input>');
   // Change login button to submit button
   $('.login').text('Submit');
   $('.login').off('click', onLoginClick);
