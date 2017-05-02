@@ -38,7 +38,7 @@ function gotToken(data) {
 function getAuth0Token(username, password) {
   $.ajax({
     type: 'POST',
-    url: 'https://ehoops.auth0.com/oauth/ro',
+    url: 'https://' + config.AUTH0_DOMAIN + '/oauth/ro',
     data: {
       client_id: config.AUTH0_CLIENT_ID,
       username: username,
@@ -87,15 +87,8 @@ function onSubmitPressure() {
   });
 }
 
-function onRangeClick() {
-  console.log('Range clicked');
-  let b = $('#rangeDropdown');
-  b.hasClass('show') ? b.removeClass('show') : b.addClass('show');
-}
-
 $(document).ready(function(){
   $('.submitPressure').on('click', onSubmitPressure);
   $('.login').on('click', onLoginClick);
-  $('#setRange').on('click', onRangeClick);
   fetchAndDraw();
 });

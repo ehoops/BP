@@ -46,8 +46,6 @@ function createChart(systolic, diastolic, months) {
 
   let ratio = devicePixelRatio / backingStoreRatio;
 
-
-
   // upscale the canvas if the two ratios don't match
   if (devicePixelRatio !== backingStoreRatio) {
 
@@ -56,20 +54,8 @@ function createChart(systolic, diastolic, months) {
 
       canvas.width = oldWidth * ratio;
       canvas.height = oldHeight * ratio;
-
-      //canvas.style.width = oldWidth + 'px';
-      //canvas.style.height = oldHeight + 'px';
-
-      // now scale the context to counter
-      // the fact that we've manually scaled
-      // our canvas element
-      //ctx.scale(ratio * .2, ratio * .2);
-
   }
-
-
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-
 
   // Chart margins
   const topMarginPx = 15;      // Space for the top y-axis label
